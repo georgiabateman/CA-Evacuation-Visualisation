@@ -240,13 +240,29 @@
                         <img src="assets/NeighouringCellsTransitionRules.png"
                             alt="Grid of cells displaying transition rules" width="250" height="250" class="center">
                         <p class="main-text">
-                            For example, the agent in this cellular automata model could move to the cell directly to
-                            its
-                            left, or to the cell above it and to the left. Both of these cells are the same distance away
+                            For example, the agentin this cellular automata model could move to the cell directly to its
+                            left, or to the cell above it and to the left. Both of these cells are the same distance
+                            away
                             from the exit, so a transition rule is required to determine which of these cell the agent
                             will move into on this timestep of the model.
                         </p>
-
+                        <p class="main-text">
+                            Of course, in many cases, rooms and other areas inside buildings will not have completely
+                            clear paths that allows people to walk directly towards an exit. There are likely to be
+                            obstacles in their way, which will block them from moving in certain areas in the room. A CA
+                            model is able to represent these obstacles by not allowing agents to move into certain
+                            cells. The presence of obstacles will also affect the calculation of the distance map in the
+                            model, as this representsthe most direct path to an exit considering that they will not be
+                            allowed to move into certain cells representing where an object is present.
+                        </p>
+                        <img src="assets/pg3_agents_obstacle.jpg"
+                            alt="Trajectory of agents around an obstacle" width="350" height="281" class="center">
+                        <p class="main-text">
+                            The diagram above (Varas et al., 2007) shows the trajectory of two agents(grey circles) in a
+                            CA model moving around an obstacle located in front of anexit door. The distance map
+                            calculated for this geometry ensures the pedestrians move around the object, whilst still
+                            taking the most direct path towards the exit.
+                        </p>
                     </div>
                 </div>
 
@@ -263,18 +279,37 @@
                     <!--  functionality 3: button with dropdown contents-->
                     <div class="text section-body odd" id="p4">
                         <p class="main-text">
-                            In most evacuation or pedestrian dynamics scenarios, we are interested in determining the behaviour of a crowd of people, not just one single person. It is easy to represent a crowd in a CA model, as each person in the crowd can be represented as an individual agent in the model. 
-                        </p> 
-                        <p class="main-text">
-                            With multiple agents, more algorithmic rules are required to determine which agent will move into a particular cell if a conflict arises. Multiple agents may wish to move into the same cell on the same timestep, but only one can end up in that cell, as the cells can only be occupied by one agent at a time. The most simple choice for a transition rule to solve this conflict is to randomly assign one of the conflicted agents to that cell at the end of the timestep, with the others not changing their position. For example, in the image below, both the red, blue and green agent all want to move into the ‘exit’ cell. If a random transition rule is used, the blue agent may be randomly assigned to move into this cell, and the red and green agents will remain in the cells they are currently in until the next timestep. 
+                            In most evacuation or pedestrian dynamics scenarios, we are interested in determining the
+                            behaviour of a crowd of people, not just one single person. It is easy to represent a crowd
+                            in a CA model, as each person in the crowd can be represented as an individual agent in the
+                            model.
                         </p>
-                        <img src="assets/pg4_img1_conflict.png" alt="Conflict between 3 agents choosing the same cell" width="250" height="250" class = "center">
                         <p class="main-text">
-                            The fact that many cells are already occupied and therefore ‘blocked’ by agents means that it will take a longer time for agents to reach an exit in the model than if other agents weren’t present. Therefore, the overall timeit takes all agents in the model to reach the exit is likely to increase when more agents are initialised in the model.  
-                         </p>
-                         <p class="main-text">
-                            In more complicated CA models, each agent can be defined to have their own characteristics which may affect their behaviour. For instance, some agents could either be ‘selfless’ or ‘selfish’. In conflict scenarios where more than one agent wishes to move into the same cell, the more ‘selfish’ agents can take priority over the ‘selfless’ agents to move into that cell.
-                         </p>
+                            With multiple agents, more algorithmic rules are required to determine which agent will move
+                            into a particular cell if a conflict arises. Multiple agents may wish to move into the same
+                            cell on the same timestep, but only one can end up in that cell, as the cells can only be
+                            occupied by one agent at a time. The most simple choice for a transition rule to solve this
+                            conflict is to randomly assign one of the conflicted agents to that cell at the end of the
+                            timestep, with the others not changing their position. For example, in the image below, both
+                            the red, blue and green agent all want to move into the ‘exit’ cell. If a random transition
+                            rule is used, the blue agent may be randomly assigned to move into this cell, and the red
+                            and green agents will remain in the cells they are currently in until the next timestep.
+                        </p>
+                        <img src="assets/pg4_img1_conflict.png" alt="Conflict between 3 agents choosing the same cell"
+                            width="250" height="250" class="center">
+                        <p class="main-text">
+                            The fact that many cells are already occupied and therefore ‘blocked’ by agents means that
+                            it will take a longer time for agents to reach an exit in the model than if other agents
+                            weren’t present. Therefore, the overall timeit takes all agents in the model to reach the
+                            exit is likely to increase when more agents are initialised in the model.
+                        </p>
+                        <p class="main-text">
+                            In more complicated CA models, each agent can be defined to have their own characteristics
+                            which may affect their behaviour. For instance, some agents could either be ‘selfless’ or
+                            ‘selfish’. In conflict scenarios where more than one agent wishes to move into the same
+                            cell, the more ‘selfish’ agents can take priority over the ‘selfless’ agents to move into
+                            that cell.
+                        </p>
                     </div>
                 </div>
 
@@ -307,7 +342,8 @@
                         </div>
                     </div>
                     <div class="rightload text odd" id='loadout1' key="loadout1" v-if="currentSection === 1">
-                        <iframe src="Files/page1.html" style="width: 67vw; height: 96vh; float: left; margin-top: 15px; margin-left: 25px;"></iframe>
+                        <iframe src="Files/page1.html"
+                            style="width: 67vw; height: 96vh; float: left; margin-top: 15px; margin-left: 25px;"></iframe>
 
                     </div>
 
@@ -315,14 +351,16 @@
 
 
                         <!--Interactive Zone Sub Containers-->
-                        <iframe src="Files/page2.html" style="width: 67vw; height: 96vh; float: left; margin-top: 15px; margin-left: 25px;"></iframe>
+                        <iframe src="Files/page2.html"
+                            style="width: 67vw; height: 96vh; float: left; margin-top: 15px; margin-left: 25px;"></iframe>
 
                     </div>
 
                     <div class="rightload text even" id='loadout3' key="loadout3" v-if="currentSection === 3">
 
                         <!--Interactive Zone Sub Containers-->
-                        <iframe src="Files/page3.html" style="width: 67vw; height: 96vh; float: left; margin-top: 15px; margin-left: 25px;"></iframe>
+                        <iframe src="Files/page3.html"
+                            style="width: 67vw; height: 96vh; float: left; margin-top: 15px; margin-left: 25px;"></iframe>
 
 
                     </div>
@@ -330,7 +368,8 @@
                     <div class="rightload text even" id='loadout4' key="loadout4" v-if="currentSection === 4">
 
                         <!--Interactive Zone Sub Containers-->
-                        <iframe src="Files/page4.html" style="width: 67vw; height: 96vh; float: left; margin-top: 15px; margin-left: 25px;"></iframe>
+                        <iframe src="Files/page4.html"
+                            style="width: 67vw; height: 96vh; float: left; margin-top: 15px; margin-left: 25px;"></iframe>
 
                     </div>
 
