@@ -418,7 +418,7 @@ function mousePressed() {
     for (let i = 0; i < rows; i++) {
         for (let j = 0; j < cols; j++) {
             let dis = dist(mouseX, mouseY, ((j + 1) * rectwidth) - (rectwidth / 2), ((i + 1) * rectheight) - (rectheight / 2));
-            if (dis < rectwidth / 2 && testroom.grid[i][j].type === "obstacle" && run == false) {
+            if (dis < rectwidth / 2 && (testroom.grid[i][j].type === "obstacle" || testroom.grid[i][j].type === "floor") && run == false) {
                 run = false;
                 testroom = new CARoom(cols, rows);
                 testroom.testCreate1Target(j, i);
