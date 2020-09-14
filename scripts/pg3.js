@@ -263,8 +263,8 @@ class CARoom {
             targX = this.targets[i].x;
             targY = this.targets[i].y;
             maxdim = Math.sqrt(
-                Math.max(targX, this.width - targX - 1) ** 2 +
-                Math.max(targY, this.height - targY - 1) ** 2
+                Math.max(targX, this.width - targX - 2) ** 2 +
+                Math.max(targY, this.height - targY - 2) ** 2
             ); //See declaration, line 95
             if (maxdim < bigDim) {
                 //Smallest possible "furthest point from a target cell"

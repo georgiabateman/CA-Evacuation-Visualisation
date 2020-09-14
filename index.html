@@ -75,6 +75,11 @@
                         @mouseover="hoverPosUpdate($event); selectHover();"
                         @mouseout="hoverTitle=false">{{sectionTitle[3]}}
                     </button>
+                    <button :class="[currentTitle === 5 ? 'activeButton' : '', 'overlay-button']" id="sectionTitle5"
+                        key="sectionTitle4" data-no=5 @click="scrollTo($event)"
+                        @mouseover="hoverPosUpdate($event); selectHover();"
+                        @mouseout="hoverTitle=false">{{sectionTitle[4]}}
+                    </button>
 
                 </div>
                 <!--    Dynamic meters indicating progress through each section    -->
@@ -86,6 +91,8 @@
                     :max="sectionBottoms[2]" :value="scrollPos"></meter>
                 <meter :class="[currentTitle === 4 ? 'activeMeter' : '']" id="m4" :min="sectionTops[3]"
                     :max="sectionBottoms[3]" :value="scrollPos"></meter>
+                <meter :class="[currentTitle === 5 ? 'activeMeter' : '']" id="m5" :min="sectionTops[4]"
+                    :max="sectionBottoms[4]" :value="scrollPos"></meter>
 
                 <div id="banner-dummy"></div>
             </div>
@@ -170,9 +177,13 @@
                             or room layout input into the model will be represented in this way. This is achieved simply
                             by dividing the total area into smaller cells, each representing a smaller portion of the
                             environment.
-                            <img src="assets/pg2_img1_grid.jpg" alt="Room divided into a square grid" width="350"
-                                height="134" class="center">
-
+                        </p>
+                        <img src="assets/pg2_img1_grid.jpg" alt="Room divided into a square grid" width="350"
+                            height="134" class="center">
+                        <p class="main-text">
+                            One cell can only be occupied by one agent at any point in timeduring the simulation.
+                            Inpedestrian dynamics CA models, cells typically represent real world dimensions of
+                            approximately 1m x 1m.
                         </p>
                         <p class="main-text">
                             Agents move position as the model progresses by transitioning into one of the neighbouring
@@ -190,9 +201,6 @@
                             Figure adapted from Nugraha et al (2020)<sup>1</sup>.
                             <img src="assets/pg2_img2_sqhex.jpg" alt="Square and Hex grids" width="350" height="195"
                                 class="center">
-                            <sup>1</sup>Nugraha, Blainey & Nash, 2020. On the consistency of urban cellular automata
-                            models based on hexagonal and square cells. Environment and Planning B: Urban Analytics and
-                            City Science 0(0) 1-16.
                         </p>
 
                     </div>
@@ -217,12 +225,16 @@
                         </p>
                         <p class="main-text">
                             But how do agents in a CA model determine which direction they need to move in? One popular
-                            method of accomplishing this is through the concept of a <b>distance map</b>. A distance map
-                            represents the space using numerical values assigned to different cells in the model,
-                            according to the total travel distance needed to reach the target from that particular cell
-                            (Ronchi &amp; Nilsson, 2016). The map only has to be calculated once at the beginning of
-                            the simulation. For simple architectural geometries, the Euclidian (straight-line) distance
-                            can be used to calculate the distance map.
+                            method of accomplishing this is through the concept of a <b>distance map</b>, also known as
+                            a <b>floor field</b>. Thedistance map, or floor field,represents the space using numerical
+                            values
+                            assigned to the cells in the model, according to the total travel distance needed to reach
+                            the target from that particular cell. The map only has to be calculated once at the
+                            beginning of the simulation. For simple architectural geometries, the Euclidian
+                            (straight-line) distance can be used to calculate the distance map. In the image below, the
+                            target cell has been assigned a value of 256, and all other cells have been assigned a value
+                            between 1 and 256 representing how far they are away from the target (closer cells have
+                            higher numbers).
                             <img src="assets/DistanceMap.png"
                                 alt="Grid of cells containing numbers displaying distance from exit" width="350"
                                 height="155" class="center">
@@ -231,7 +243,7 @@
                         <p class="main-text">
                             The distance map will be referred to when agents are choosing which cell to move into for
                             the next time step in the model. Of the possible neighbouring cells, agents will choose to
-                            move into the cell with the lowest number, representing the shortest distance away from the
+                            move into the cell with the highest number, representing the shortest distance away from the
                             target. On some occasions, multiple neighbouring cells will be equidistant away from the
                             agent’s target. A specific transition rule is required for this scenario, to determine which
                             cell the agent will actually move into. A common choice is simply for the agent to randomly
@@ -240,7 +252,8 @@
                         <img src="assets/NeighouringCellsTransitionRules.png"
                             alt="Grid of cells displaying transition rules" width="250" height="250" class="center">
                         <p class="main-text">
-                            For example, the agentin this cellular automata model could move to the cell directly to its
+                            For example, the agen tin this cellular automata model could move to the cell directly to
+                            its
                             left, or to the cell above it and to the left. Both of these cells are the same distance
                             away
                             from the exit, so a transition rule is required to determine which of these cell the agent
@@ -255,8 +268,8 @@
                             model, as this representsthe most direct path to an exit considering that they will not be
                             allowed to move into certain cells representing where an object is present.
                         </p>
-                        <img src="assets/pg3_agents_obstacle.jpg"
-                            alt="Trajectory of agents around an obstacle" width="350" height="281" class="center">
+                        <img src="assets/pg3_agents_obstacle.jpg" alt="Trajectory of agents around an obstacle"
+                            width="350" height="281" class="center">
                         <p class="main-text">
                             The diagram above (Varas et al., 2007) shows the trajectory of two agents(grey circles) in a
                             CA model moving around an obstacle located in front of anexit door. The distance map
@@ -312,6 +325,76 @@
                         </p>
                     </div>
                 </div>
+                <div class="section-container" id="sc5">
+                    <div class="placeholder" id="ph5">
+                        <hr>
+                        <h2 class="text section-head" id="s5">
+                            {{sectionSubtitle[4]}}
+                        </h2>
+                        <hr>
+                    </div>
+                    <!--  functionality 3: button with dropdown contents-->
+                    <div class="text section-body odd" id="p5">
+                        <p class="main-text">
+                            The CA model presented in this visualisation is a very basic kind of CA model. It could be
+                            extended or upgraded in various ways, in order to make the agent’s behaviour, or the way they
+                            interact with the environment, more realistic.
+                        </p>
+                        <p class="main-text">
+                            One way in which a CA model can be extended is to define each agent in the model to have
+                            individual characteristics which affect their behaviour. For instance, agents could be
+                            chosen
+                            to be either be ‘selfless’ or ‘selfish’. In conflict scenarios where more than one agent
+                            wishes to move into the same cell, the more ‘selfish’ agents can take priority over the
+                            ‘selfless’ agents to move into that cell.
+                        </p>
+                        <p class="main-text">
+                            Another example of how a CA model can be extended relates to group behaviour, and the
+                            distance map calculated in the model. In order to represent an evacuation scenario in which
+                            evacuees do not know the location of exits in the room, the way the distance map is
+                            calculated can be altered. It can instead be calculated based on where other agents are
+                            located in the environment. Agents are then more likely to move towards locations where
+                            other groups of agents are, as these areas are more likely to be near exits.
+                        </p>
+                        <p class="main-text">
+                            The following references provide more information about cellular automata models, their use
+                            in evacuation simulation modelling, and the possible extensions to these models. Much of the
+                            text, and some of the diagrams presented in this visualisation were sourced or inspired by
+                            these references.
+                        <ul>
+                            <li>Evacuation Modelling Trends (2016), Springer International. Eds: Cuesta, A., Abreu, O.,
+                                and Alvear, D. ISBN: 978-3-319-20707-0</li>
+                            <li>Kuligowski, E. D. and Peacock, R. (2005) A Review of Building Evacuation Models.</li>
+                            <li>Vermuyten, H. et al.(2016) ‘A review of optimisation models for pedestrian evacuation
+                                and design problems’, Safety Science. Elsevier Ltd, 87, pp. 167–178. doi:
+                                10.1016/j.ssci.2016.04.001.</li>
+                            <li>Yang, L., Fang, W., Huang, R., and Deng, Z. (2002) ‘Occupant evacuation model based on
+                                cellular automata in fire’, Chinese Science Bulletin 47 (14) pp.1484-1488. </li>
+                            <li>Yuan, W., and Tan, K.H. (2007) ‘An evacuation model using cellular automata’, Physica A
+                                384 (2007) pp.549-566</li>
+                            <li>Song, W., Yu, Y., Fan, W., and Heping, Z. (2005) ‘A cellular automata evacuation model
+                                considering friction and repulsion.’ Science in China Series E. Engineering & Materials
+                                Science 48 (4) pp.403-413</li>
+                            <li>Klüpfel, H. and Meyer-König, T. (2005) ‘Simulation of the Evacuation of a Football
+                                Stadium Using the CA Model PedGo’, Traffic and Granular Flow ’03, pp. 423–428--. doi:
+                                10.1007/3-540-28091-x_43.</li>
+                            <li>Wang, J. et al.(2015) ‘Modeling and simulating for congestion pedestrian evacuation with
+                                panic’, Physica A: Statistical Mechanics and its Applications. Elsevier B.V., 428, pp.
+                                396–409. doi: 10.1016/j.physa.2015.01.057.</li>
+                            <li>Manley, M. et al.(2011) ‘Modeling Emergency Evacuation of Individuals with Disabilities
+                                in a Densely Populated Airport’, Transportation Research Record: Journal of the
+                                Transportation Research Board, 2206, pp. 32–38. doi: 10.3141/2206-05.</li>
+                            <li>Nugraha, Blainey & Nash (2020)‘On the consistency of urban cellular automata models
+                                based on hexagonal and square cells’Environment and Planning B: Urban Analytics and City
+                                Science0(0) 1-16</li>
+                            <li>Varas, A., Cornejo, M.D., Mainemer, D., Toledo, B., Rogan, J., Munoz, V., Valdiva, J.A.
+                                (2007), ‘Cellular automaton model for evacuation process with obstacles’, Physica A:
+                                Statistical Mechanics and its Applications, 382 (2) pp.631-642
+                                https://doi.org/10.1016/j.physa.2007.04.006</li>
+                        </ul>
+                        </p>
+                    </div>
+                </div>
 
 
 
@@ -352,7 +435,7 @@
 
                         <!--Interactive Zone Sub Containers-->
                         <iframe src="Files/page2.html"
-                            style="width: 67vw; height: 96vh; float: left; margin-top: 15px; margin-left: 25px;"></iframe>
+                            style="width: 67vw; height: 96vh;"></iframe>
 
                     </div>
 
@@ -369,6 +452,13 @@
 
                         <!--Interactive Zone Sub Containers-->
                         <iframe src="Files/page4.html"
+                            style="width: 67vw; height: 96vh; float: left; margin-top: 15px; margin-left: 25px;"></iframe>
+
+                    </div>
+                    <div class="rightload text even" id='loadout5' key="loadout5" v-if="currentSection === 5">
+
+                        <!--Interactive Zone Sub Containers-->
+                        <iframe src="Files/page5.html"
                             style="width: 67vw; height: 96vh; float: left; margin-top: 15px; margin-left: 25px;"></iframe>
 
                     </div>

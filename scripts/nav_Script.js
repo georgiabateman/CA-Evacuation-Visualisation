@@ -15,10 +15,10 @@ let app = new Vue ({
         sectionBottoms: [],
         innerchange:[],
         // the title of each section
-        sectionTitleLong: ["Introduction", "Cells",  "Exits", "Multiple Agents"],
-        sectionSubtitle: ["Cellular Automata Models for Pedestrian and Evacuation Modelling","Representing the Environment as Cells","Moving to a Safe Place","Including more than one Evacuee"],
+        sectionTitleLong: ["Introduction", "Cells",  "Exits", "Multiple Agents","Extensions"],
+        sectionSubtitle: ["Cellular Automata Models for Pedestrian and Evacuation Modelling","Representing the Environment as Cells","Moving to a Safe Place","Including more than one Evacuee","Extensions and References"],
         // the number of each section
-        sectionTitleShort: ["1","2","3","4"],
+        sectionTitleShort: ["1","2","3","4","5"],
         sectionTitle: [],
         hoverPos: '',
         hoverTitle: false,
@@ -28,7 +28,7 @@ let app = new Vue ({
         journeyHeightNew: "",
         firstRunDone: false,
         // the index of each subsection
-        subSection: [1,1,1,1],
+        subSection: [1,1,1,1,1],
         subSubSection: 1,
     },
 
