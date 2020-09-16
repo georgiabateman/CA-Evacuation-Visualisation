@@ -243,10 +243,11 @@ button.section-sub-head:hover {
 
 .nav-tabs > li {
     display: flex;
+    height: 30px;
     flex-direction: column;
     flex-basis: 0;
     flex-grow: 1;
-    border-radius: 0.5vh 0.5vh 0 0 ;
+    border-radius: 0.1vh 0.1vh 0 0 ;
     text-align: center;
     background: #ffffff;
     align-items: stretch;
@@ -273,7 +274,7 @@ button.section-sub-head:hover {
 }
 
 .nav-tabs > li > a {
-    padding: 5% 0 6% 0;
+    padding: 1% 0 1% 0;
     border-radius: inherit;
     font-size: calc(5px + 1.1vw);
     z-index: 1;
@@ -284,14 +285,14 @@ button.section-sub-head:hover {
 .tab-content {
     position: relative;
     color : #000000;
-    background-color: #eaf2ff;
-    padding : 2vh 2vw;
+    background-color: #ffffff;
+    padding : 0vh 2vw;
     /*box-shadow: 3px 4px 3px #a8a8a8;*/
     z-index: 2;
     /*border-radius: 8px 8px 8px 8px;*/
     border-radius: 0.5vh 0.5vh 0.5vh 0.5vh;
     /*border: 1px solid grey;*/
-    box-shadow: 2px 2px 2px #a8a8a8;
+    box-shadow: 2px 2px 2px #ffffff;
 }
 
 .tab-content > .tab-pane:not(.active),
